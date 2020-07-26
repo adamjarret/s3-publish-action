@@ -1,4 +1,6 @@
+# This ignores .vscode, .nyc_output, etc in root as well as .bin and .cache in node_modules
 .*/
-node_modules/
+
 test/fixtures/
+
 s3-publish-action-*.tgz
