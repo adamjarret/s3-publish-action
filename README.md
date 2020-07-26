@@ -10,7 +10,7 @@
 ## Usage
 
 ```yaml
-name: sync files
+name: publish
 
 on:
   push:
@@ -23,13 +23,47 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: publish
+      - name: sync
         uses: adamjarret/s3-publish-action@v2
         with:
           origin: './public'
           originIgnore: '[".*/"]'
-          target: 's3://s3p-test'
+          target: 's3://s3-publish-action-example'
           delete: '1'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1
+```
+
+This config assumes you have configured IAM credentials that have access to the target as [GitHub Secrets](https://docs.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets).
+
+__Example IAM Policy__
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowAccess",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:ListBucket",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::s3-publish-action-example/*",
+                "arn:aws:s3:::s3-publish-action-example"
+            ]
+        },
+        {
+            "Sid": "AllowHead",
+            "Effect": "Allow",
+            "Action": "s3:HeadBucket",
+            "Resource": "*"
+        }
+    ]
+}
 ```
 
 ## Inputs
