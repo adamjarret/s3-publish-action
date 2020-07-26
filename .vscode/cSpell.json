@@ -1,0 +1,4 @@
+{
+  "words": ["Jarret", "adamjarret", "ORIGINIGNORE", "LIMITCOMPARES", "Loggable"],
+  "ignorePaths": [".git", "node_modules"]
+}

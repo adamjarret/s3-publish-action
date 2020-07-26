@@ -1,0 +1,76 @@
+name: 'Sync files with s3-publish'
+description: 'Keep local/S3 files in sync with programmable hooks'
+inputs:
+  configPath:
+    description: 'Load config from this file path'
+    required: false
+    default: '.s3p.config.js'
+  cwd:
+    description: 'Explicitly set current working directory'
+    required: false
+
+  origin:
+    description: 'Origin root (defaults to CWD)'
+    required: false
+  originIgnore:
+    description: 'Glob patterns used to ignore origin files (should use .gitignore syntax)'
+    required: false
+  originIgnorePath:
+    description: 'Path to file containing glob patterns that should be used to ignore origin files (should use .gitignore syntax)'
+    required: false
+    default: '.s3p.origin.ignore'
+
+  target:
+    description: 'Target root'
+    required: false
+  targetIgnore:
+    description: 'Glob patterns used to ignore target files (should use .gitignore syntax)'
+    required: false
+    outputs:
+  targetIgnorePath:
+    description: 'Path to file containing glob patterns that should be used to ignore target files (should use .gitignore syntax)'
+    required: false
+    default: '.s3p.target.ignore'
+
+  change:
+    description: 'If "1", upload non-ignored origin files even if unchanged'
+    required: false
+  delete:
+    description: 'If "1", delete target files that do not exist in origin'
+    required: false
+  expect:
+    description: 'If "1", only upload origin files that already exist in target'
+    required: false
+  go:
+    description: 'If "1", log and perform operations. If "0", log operations without performing them.'
+    required: false
+    default: '1'
+  json:
+    description: 'If "1", render log messages as JSON'
+    required: false
+
+  limitCompares:
+    description: 'Max parallel file compare operations'
+    required: false
+  limitRequests:
+    description: 'Max parallel list/put/copy/delete operations'
+    required: false
+
+  showHashes:
+    description: 'If "1", output ETag property for File(s)'
+  showIgnored:
+    description: 'If "1", output ignored files'
+  showParams:
+    description: 'If "1", output operation request parameters'
+  showSkipped:
+    description: 'If "1", output skipped (unchanged/unexpected) files'
+
+outputs:
+  plan:
+    description: 'JSON string containing planned operations'
+  result:
+    description: 'JSON string containing operation results'
+
+runs:
+  using: 'node12'
+  main: 'index.js'

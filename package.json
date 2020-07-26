@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "s3-publish-action",
+  "version": "1.0.0",
+  "description": "Keep local/S3 files in sync with programmable hooks via GitHub Action",
+  "main": "index.js",
+  "files": [
+    "src/**/*"
+  ],
+  "scripts": {
+    "all": "npm run pretty && npm run spell && npm run cover",
+    "pretty": "npx prettier './**/*.{js,json,md}' --write",
+    "spell": "npx cspell '**' --config .vscode/cSpell.json",
+    "cover": "npx nyc npm test",
+    "test": "node test/run.js"
+  },
+  "keywords": [],
+  "author": "Adam Jarret <adam@atj.me> (https://atj.me)",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "s3-publish": "^2.1.0"
+  }
+}
