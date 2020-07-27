@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: sync
-        uses: adamjarret/s3-publish-action@v2
+        uses: adamjarret/s3-publish-action@v1
         with:
           origin: './public'
           originIgnore: '[".*/"]'
