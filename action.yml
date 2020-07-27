@@ -1,5 +1,9 @@
 name: 'Sync files with s3-publish'
 description: 'Keep local/S3 files in sync with programmable hooks'
+author: Adam Jarret
+branding:
+  icon: 'upload-cloud'  
+  color: 'green'
 inputs:
   configPath:
     description: 'Load config from this file path'
