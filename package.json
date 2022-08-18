@@ -18,7 +18,7 @@
   "author": "Adam Jarret <adam@atj.me> (https://atj.me)",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.6",
+    "@actions/core": "^1.9.1",
     "s3-publish": "^2.1.0"
   }
 }
